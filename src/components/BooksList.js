@@ -31,9 +31,9 @@ const BooksList = ({ getBookId }) => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Book Title</th>
-            <th>Book Author</th>
-            <th>Status</th>
+            <th>Poligono</th>
+            <th>Ria</th>
+            <th>Flag</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -42,9 +42,10 @@ const BooksList = ({ getBookId }) => {
             return (
               <tr key={doc.id}>
                 <td>{index + 1}</td>
-                <td>{doc.title}</td>
-                <td>{doc.author}</td>
-                <td>{doc.status}</td>
+                <td>{doc.nombre}</td>
+                <td>{doc.ria}</td>
+
+                <td><input type="checkbox" checked={doc.flag}/></td>
                 <td>
                   <Button
                     variant="secondary"

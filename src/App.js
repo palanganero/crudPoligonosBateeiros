@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Crud from "./components/Crud";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 
@@ -23,39 +24,30 @@ function App() {
   };
   return (
     <>
-    <Navbar bg="dark" variant="dark" className="header">
-      <Container>
-        <Navbar.Brand href="#home">Library - Firebase CRUD</Navbar.Brand>
-      </Container>
-    </Navbar>
 
-    <Container style={{ width: "400px" }}>
-      <Row>
-        <Col>
-          <AddBook id={bookId} setBookId={setBookId} />
-        </Col>
-      </Row>
-    </Container>
-    <Container>
-      <Row>
-        <Col>
-          <BooksList getBookId={getBookIdHandler} />
-        </Col>
-      </Row>
-    </Container>
     <Container style={{ width: "400px" }}>
       <Row>
         <Col>
           <UserAuthContextProvider>
             <Routes>
+            
+            <Route
+                exact path="/crud"
+                element={
+                <ProtectedRoute>
+                  <Crud />
+                </ProtectedRoute>
+                }
+              />
               <Route
-                path="/home"
+                exact path="/home"
                 element={
                   <ProtectedRoute>
                     <Home />
                   </ProtectedRoute>
                 }
               />
+              
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
             </Routes>

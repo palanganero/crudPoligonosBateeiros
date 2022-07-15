@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Form, Alert, InputGroup, Button, ButtonGroup } from "react-bootstrap";
 import BookDataService from "../services/book.services";
+import RiasSelect from "./RiasSelect";
 
 const AddBook = ({ id, setBookId }) => {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [ria, setRia] = useState("");
   const [status, setStatus] = useState("Available");
   const [flag, setFlag] = useState(true);
   const [message, setMessage] = useState({ error: false, msg: "" });
 
+  const moveData=(personalData)=>{
+    setRia(personalData)
+    console.log(personalData)}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-    if (title === "" || author === "") {
+    if (nombre === "" || ria === "") {
       setMessage({ error: true, msg: "All fields are mandatory!" });
       return;
     }
     const newBook = {
-      title,
-      author,
-      status,
+      nombre,
+      ria,
+      flag,
     };
     console.log(newBook);
 
@@ -36,8 +41,8 @@ const AddBook = ({ id, setBookId }) => {
       setMessage({ error: true, msg: err.message });
     }
 
-    setTitle("");
-    setAuthor("");
+    setNombre("");
+    setRia("");
   };
 
   const editHandler = async () => {
@@ -45,9 +50,9 @@ const AddBook = ({ id, setBookId }) => {
     try {
       const docSnap = await BookDataService.getBook(id);
       console.log("the record is :", docSnap.data());
-      setTitle(docSnap.data().title);
-      setAuthor(docSnap.data().author);
-      setStatus(docSnap.data().status);
+      setNombre(docSnap.data().nombre);
+      setRia(docSnap.data().ria);
+      setFlag(docSnap.data().flag);
     } catch (err) {
       setMessage({ error: true, msg: err.message });
     }
@@ -79,26 +84,17 @@ const AddBook = ({ id, setBookId }) => {
               <Form.Control
                 type="text"
                 placeholder="Book Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
               />
             </InputGroup>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBookAuthor">
-            <InputGroup>
-              <InputGroup.Text id="formBookAuthor">A</InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Book Author"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
-              />
-            </InputGroup>
-          </Form.Group>
+          <RiasSelect onMoveData={moveData}/>
+          
           <ButtonGroup aria-label="Basic example" className="mb-3">
             <Button
-              disabled={flag}
+              //disabled={flag}
               variant="success"
               onClick={(e) => {
                 setStatus("Available");
@@ -109,7 +105,7 @@ const AddBook = ({ id, setBookId }) => {
             </Button>
             <Button
               variant="danger"
-              disabled={!flag}
+              //disabled={!flag}
               onClick={(e) => {
                 setStatus("Not Available");
                 setFlag(false);

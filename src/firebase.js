@@ -3,17 +3,18 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAyX0Of0MNl6ORorUztAKfqiI5wFodoKXE",
+  apiKey: "AIzaSyB1SuwHYvFnQsFfUOpUjHLmHT-OKZ3Rgtc",
 
-  authDomain: "firestoreandroid-5aeb5.firebaseapp.com",
+  authDomain: "crudpoligonosbateeiros.firebaseapp.com",
 
-  projectId: "firestoreandroid-5aeb5",
+  projectId: "crudpoligonosbateeiros",
 
-  storageBucket: "firestoreandroid-5aeb5.appspot.com",
+  storageBucket: "crudpoligonosbateeiros.appspot.com",
 
-  messagingSenderId: "868798150099",
+  messagingSenderId: "322285173215",
 
-  appId: "1:868798150099:web:64f9de9bedeecc8a042b26"
+  appId: "1:322285173215:web:a459d6bfdfa3b2e87fac6a"
+
 };
 
 // Initialize Firebase
