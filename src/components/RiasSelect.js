@@ -25,7 +25,7 @@ const RiasSelect = (props) => {
       <select onChange={moveDataHandler}>
         {rias.map((doc, index) => {
             return (               
-            <option value={doc.nombre}>{doc.nombre}</option>                
+            <option label={doc.nombre} value={doc.nombre}>{doc.nombre}</option>                
             );
           })}
       </select>

@@ -5,7 +5,7 @@ import RiasSelect from "./RiasSelect";
 
 const AddBook = ({ id, setBookId }) => {
   const [nombre, setNombre] = useState("");
-  const [ria, setRia] = useState("");
+  const [ria, setRia] = useState("arousa");
   const [status, setStatus] = useState("Available");
   const [flag, setFlag] = useState(true);
   const [message, setMessage] = useState({ error: false, msg: "" });
